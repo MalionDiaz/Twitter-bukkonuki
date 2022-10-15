@@ -1,0 +1,104 @@
+// @ts-nocheck
+function getFollowersCount(){
+  var url1 = "https://api.twitter.com/2/users/by/username/cameong?user.fields=public_metrics";
+  var url2 = "https://api.twitter.com/2/users/by/username/prism_cryptos?user.fields=public_metrics";
+  var url3 = "https://api.twitter.com/2/users/by/username/maliondiaz?user.fields=public_metrics";
+  var url4 = "https://api.twitter.com/2/users/by/username/kobatake00000?user.fields=public_metrics";
+  var url5 = "https://api.twitter.com/2/users/by/username/stir_network_jp?user.fields=public_metrics";
+  var url6 = "https://api.twitter.com/2/users/by/username/stir_lab?user.fields=public_metrics";
+//集めたいユーザーを指定しています
+
+  var options = {
+    "method": "get", "headers": {
+      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAGR%2BgwEAAAAABOGzeKMOGRFHZ6t16KwTeM2%2BYoI%3DUPJSQJQALQydaZFcBXHEWM6PIslzClCWiRiEv89mFErAXChlFw"
+    },
+  };
+//何やってるかわからないけどAPI叩いてる？
+
+  var response1 = JSON.parse(UrlFetchApp.fetch(url1, options));
+  var response2 = JSON.parse(UrlFetchApp.fetch(url2, options));
+  var response3 = JSON.parse(UrlFetchApp.fetch(url3, options));
+  var response4 = JSON.parse(UrlFetchApp.fetch(url4, options));
+  var response5 = JSON.parse(UrlFetchApp.fetch(url5, options));
+  var response6 = JSON.parse(UrlFetchApp.fetch(url6, options));
+ //拾ったJSONをパースして何かやっている？ 
+
+  let today = new Date();
+  today = Utilities.formatDate(today,"JST", "yyyy-MM-dd");
+//日付追加
+
+  var addArray1 = Object.values(response1["data"]["public_metrics"]);
+  var addArray2 = Object.values(response2["data"]["public_metrics"]);
+  var addArray3 = Object.values(response3["data"]["public_metrics"]);
+  var addArray4 = Object.values(response4["data"]["public_metrics"]);
+  var addArray5 = Object.values(response5["data"]["public_metrics"]);
+  var addArray6 = Object.values(response6["data"]["public_metrics"]);
+//
+
+
+  const sheet_id = '1ZgyX-UMkRo6t7DJA58vEn4poOEy4h6FAy7P1KQEuuTY'
+  const sheet_name = 'TwitterData'
+  const sheet = SpreadsheetApp.openById(sheet_id).getSheetByName(sheet_name);
+//
+
+  sheet.insertColumnsBefore(4, 1);
+ //実行するたび左に列を挿入する
+
+  let rangeToday = sheet.getRange(2, 5);
+  let range_1 = sheet.getRange(3, 5);
+  let range_2 = sheet.getRange(8, 5);
+  let range_3 = sheet.getRange(13, 5);
+  let range_4 = sheet.getRange(18, 5);
+  let range_5 = sheet.getRange(23, 5);
+  let range_6 = sheet.getRange(28, 5);
+
+  let range_11 = sheet.getRange(4, 5);
+  let range_22 = sheet.getRange(9, 5);
+  let range_33 = sheet.getRange(14, 5);
+  let range_44 = sheet.getRange(19, 5);
+  let range_55 = sheet.getRange(24, 5);
+  let range_66 = sheet.getRange(29, 5);
+//範囲指定
+
+  rangeToday.setValue(today);
+  range_1.setValue(addArray1[0]);
+  range_2.setValue(addArray2[0]);
+  range_3.setValue(addArray3[0]);
+  range_4.setValue(addArray4[0]);
+  range_5.setValue(addArray5[0]);
+  range_6.setValue(addArray6[0]);
+
+  const flwrA1 = sheet.getSheetValues(3, 5, 1, 1);
+  const flwrA2 = sheet.getSheetValues(3, 6, 1, 1);
+  const flwrB1 = sheet.getSheetValues(8, 5, 1, 1);
+  const flwrB2 = sheet.getSheetValues(8, 6, 1, 1);
+  const flwrC1 = sheet.getSheetValues(13, 5, 1, 1);
+  const flwrC2 = sheet.getSheetValues(13, 6, 1, 1);
+  const flwrD1 = sheet.getSheetValues(18, 5, 1, 1);
+  const flwrD2 = sheet.getSheetValues(18, 6, 1, 1);
+  const flwrE1 = sheet.getSheetValues(23, 5, 1, 1);
+  const flwrE2 = sheet.getSheetValues(23, 6, 1, 1);
+  const flwrF1 = sheet.getSheetValues(28, 5, 1, 1);
+  const flwrF2 = sheet.getSheetValues(28, 6, 1, 1);
+
+
+  const drta1 = flwrA1[0] - flwrA2[0]
+  const drta2 = flwrB1[0] - flwrB2[0]
+  const drta3 = flwrC1[0] - flwrC2[0]
+  const drta4 = flwrD1[0] - flwrD2[0]
+  const drta5 = flwrE1[0] - flwrE2[0]
+  const drta6 = flwrF1[0] - flwrF2[0]
+
+  range_11.setValue(drta1);
+  range_22.setValue(drta2);
+  range_33.setValue(drta3);
+  range_44.setValue(drta4);
+  range_55.setValue(drta5);
+  range_66.setValue(drta6);
+  
+//データの追加
+ 
+ 
+
+
+}
