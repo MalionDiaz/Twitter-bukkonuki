@@ -1,19 +1,21 @@
 // @ts-nocheck
 function getFollowersCount(){
-  var url1 = "https://api.twitter.com/2/users/by/username/cameong?user.fields=public_metrics";
-  var url2 = "https://api.twitter.com/2/users/by/username/prism_cryptos?user.fields=public_metrics";
-  var url3 = "https://api.twitter.com/2/users/by/username/maliondiaz?user.fields=public_metrics";
-  var url4 = "https://api.twitter.com/2/users/by/username/kobatake00000?user.fields=public_metrics";
-  var url5 = "https://api.twitter.com/2/users/by/username/stir_network_jp?user.fields=public_metrics";
-  var url6 = "https://api.twitter.com/2/users/by/username/stir_lab?user.fields=public_metrics";
+  var url1 = "https://api.twitter.com/2/users/by/username/XXXXXX?user.fields=public_metrics";
+  var url2 = "https://api.twitter.com/2/users/by/username/XXXXXX?user.fields=public_metrics";
+  var url3 = "https://api.twitter.com/2/users/by/username/XXXXXX?user.fields=public_metrics";
+  var url4 = "https://api.twitter.com/2/users/by/username/XXXXXX?user.fields=public_metrics";
+  var url5 = "https://api.twitter.com/2/users/by/username/XXXXXX?user.fields=public_metrics";
+  var url6 = "https://api.twitter.com/2/users/by/username/XXXXXX?user.fields=public_metrics";
 //集めたいユーザーを指定しています
+//XXXXXXにはツイッターのIDを全部小文字で入れてください
 
   var options = {
     "method": "get", "headers": {
-      "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAGR%2BgwEAAAAABOGzeKMOGRFHZ6t16KwTeM2%2BYoI%3DUPJSQJQALQydaZFcBXHEWM6PIslzClCWiRiEv89mFErAXChlFw"
+      "authorization": "Bearer XXXXXXXXX"
     },
   };
 //何やってるかわからないけどAPI叩いてる？
+//XXXXにはAPIキーを挿入してください
 
   var response1 = JSON.parse(UrlFetchApp.fetch(url1, options));
   var response2 = JSON.parse(UrlFetchApp.fetch(url2, options));
@@ -25,7 +27,7 @@ function getFollowersCount(){
 
   let today = new Date();
   today = Utilities.formatDate(today,"JST", "yyyy-MM-dd");
-//日付追加
+//日付の自動追加
 
   var addArray1 = Object.values(response1["data"]["public_metrics"]);
   var addArray2 = Object.values(response2["data"]["public_metrics"]);
